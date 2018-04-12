@@ -32,11 +32,6 @@ def chooseWord(wordlist):
     """
     return random.choice(wordlist)
 
-
-# Load the list of words into the variable wordlist
-# so that it can be accessed from anywhere in the program
-wordlist = loadWords(WORDLIST_FILENAME)
-
 def isWordGuessed(secretWord, lettersGuessed):
     '''
     Function to check if the player has guessed the word correctly
@@ -148,9 +143,12 @@ def hangman(secretWord):
 
 
 # testing 
+# Load the list of words into the variable wordlists
 #secretWord = 'testing'
 #hangman(secretWord)
 
-# running
-secretWord = chooseWord(wordlist).lower()
-hangman(secretWord)
+# running the game
+if __name__ == '__main__':
+    wordlist = loadWords(WORDLIST_FILENAME)
+    secretWord = chooseWord(wordlist).lower()
+    hangman(secretWord)
