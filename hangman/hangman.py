@@ -3,19 +3,22 @@
 
 import random
 
-# file containing word list is hard-coded
-# TO-DO: change to accept any file
 WORDLIST_FILENAME = "words.txt"
 
-def loadWords():
+def loadWords(inputFile):
     """        
-    Returns a list of valid words. Words are strings of lowercase letters.    
+    Reads a file containing words that are strings of lowercase letters.
+    
+    inputFile: location of the input file
+    returns: a list of valid words.
     """
     print("Loading word list from file...")
     # inFile: file (that contains the word list)
-    inFile = open(WORDLIST_FILENAME, 'r')
+    inFile = open(inputFile, 'r')
     # line: string
     line = inFile.readline()
+    # close file
+    inFile.close()
     # wordlist: list of strings
     wordlist = line.split()
     print("  ", len(wordlist), "words loaded.")
@@ -25,14 +28,14 @@ def chooseWord(wordlist):
     """
     wordlist (list): list of words/strings
 
-    Returns a word from wordlist at random
+    returns: a word from wordlist at random
     """
     return random.choice(wordlist)
 
 
 # Load the list of words into the variable wordlist
 # so that it can be accessed from anywhere in the program
-wordlist = loadWords()
+wordlist = loadWords(WORDLIST_FILENAME)
 
 def isWordGuessed(secretWord, lettersGuessed):
     '''
@@ -145,9 +148,9 @@ def hangman(secretWord):
 
 
 # testing 
-secretWord = 'testing'
-hangman(secretWord)
+#secretWord = 'testing'
+#hangman(secretWord)
 
 # running
-# secretWord = chooseWord(wordlist).lower()
-# hangman(secretWord)
+secretWord = chooseWord(wordlist).lower()
+hangman(secretWord)
